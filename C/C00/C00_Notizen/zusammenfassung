@@ -1,0 +1,143 @@
+C00 ex00–ex08 — Zusammenfassung
+Gemeinsame Regeln (für alle Übungen)
+
+    Erlaubt: nur write aus <unistd.h>.
+
+    Verboten: for, do…while, switch/case, goto, Ternary ?:, VLA (Variable Length Arrays).
+
+    Norm: echte Tabs (Breite 4), ≤ 80 Spalten, ≤ 25 Funktionszeilen (ohne Klammern), Variablen-Deklarationen am Blockanfang, snake_case, 42-Header in jeder Datei, keine „trailing commas“.
+
+ex00 — ft_putchar
+
+    Ziel: Ein Zeichen ausgeben.
+
+    Prototyp: void ft_putchar(char c);
+
+    Kernidee: write(1, &c, 1).
+
+    Begriffe: char, write, stdout (FD 1).
+
+ex01 — ft_print_alphabet
+
+    Ziel: a–z in einer Zeile.
+
+    Prototyp: void ft_print_alphabet(void);
+
+    Kernidee: while-Schleife von 'a' bis 'z' oder ein einziger write() mit dem String.
+
+    Fallstrick: Kein zusätzlicher Zeilenumbruch, wenn nicht gefordert.
+
+ex02 — ft_print_reverse_alphabet
+
+    Ziel: z–a in einer Zeile.
+
+    Prototyp: void ft_print_reverse_alphabet(void);
+
+    Kernidee: while rückwärts von 'z' bis 'a'.
+
+ex03 — ft_print_numbers
+
+    Ziel: 0–9 in einer Zeile.
+
+    Prototyp: void ft_print_numbers(void);
+
+    Kernidee: Entweder Schleife über '0'..'9' oder write("0123456789", 10).
+
+ex04 — ft_is_negative
+
+    Ziel: Bei n < 0 → N, sonst P.
+
+    Prototyp: void ft_is_negative(int n);
+
+    Kernidee: einfacher if/else mit write().
+
+ex05 — ft_print_comb
+
+    Ziel: Alle aufsteigenden 3er-Kombinationen verschiedener Ziffern:
+    012, 013, ..., 789 (mit ", " getrennt, ohne Trennzeichen am Ende).
+
+    Prototyp: void ft_print_comb(void);
+
+    Kernidee: Drei verschachtelte while-Schleifen:
+    a='0'..'7', b=a+1..'8', c=b+1..'9'.
+
+    Fallstrick: Kein „trailing comma“ nach 789.
+
+ex06 — ft_print_comb2
+
+    Ziel: Alle Paare zweistelliger Zahlen mit erster < zweiter:
+    00 01, 00 02, ..., 98 99.
+
+    Prototyp: void ft_print_comb2(void);
+
+    Kernidee: a=0..98, b=a+1..99, Ziffern mit (x/10)+'0' und (x%10)+'0'.
+    Optional Puffer char buf[5] = {A1, A2, ' ', B1, B2} → einmaliges write().
+
+    Fallstrick: Kein „trailing comma“ nach 98 99; führende Null immer ausgeben.
+
+ex07 — ft_putnbr
+
+    Ziel: Einen int korrekt ausgeben (inkl. -2147483648).
+
+    Prototyp: void ft_putnbr(int nb);
+
+    Kernidee:
+
+        Sonderfall -2147483648 direkt schreiben.
+
+        Negativzahl: '-' ausgeben, Zahl positiv machen.
+
+        Rekursiv höhere Stellen (nb/10), dann letzte Stelle ((nb%10)+'0').
+
+    Fallstrick: INT_MIN kann man nicht einfach negieren.
+
+ex08 — ft_print_combn
+
+    Ziel: Alle einzigartigen, streng aufsteigenden n-Kombinationen von Ziffern (0 < n < 10), getrennt durch ", ", ohne Trennzeichen am Ende.
+
+    Prototyp: void ft_print_combn(int n);
+
+    Kernidee (iterativ, ohne Rekursion):
+
+        Array d[10] (fixe Größe, keine VLA) hält aktuelle Kombination.
+
+        Start: d[i] = i → kleinste Kombination.
+
+        Ausgabe: Ziffern mit +'0'.
+
+        Letzte Kombination, wenn d[0] == 10 - n (z. B. bei n=3 → 789).
+
+        Inkrement: Von rechts erste steigerbare Stelle finden (d[i] < 9 - (n-1-i)), erhöhen, danach alles streng aufsteigend nachziehen (d[j] = d[j-1] + 1).
+
+    Fallstrick: Kein „trailing comma“, keine VLAs.
+
+Wichtige Begriffe (Mini-Glossar)
+
+    write(int fd, const void *buf, size_t n): Systemaufruf zum Schreiben von Bytes.
+    fd=1 ist stdout (Terminalausgabe).
+
+    stdout / stderr / stdin: Standard-Ausgabe (1) / Fehler (2) / Eingabe (0) als File Descriptors.
+
+    ASCII: Zeichencodierung; '0' hat Code 48. Zahl → Zeichen: digit + '0'.
+
+    char vs. int: char ist ein Byte (Zeichen), int ist ganzzahlig (32-bit in den Projekten).
+
+    Prototyp / Funktionssignatur: Vorab-Deklaration einer Funktion mit Namen, Rückgabetyp und benannten Parametern.
+
+    Rekursion: Funktion ruft sich selbst auf (ex07, Zahl in Stellen zerlegen).
+
+    Iteration: Schleifenbasierter Ansatz (ex01–06, ex08).
+
+    Puffer (Buffer): Kleines char-Array, um mehrere Ausgabebytes in einem write() zu schreiben (ex06 optional).
+
+    Führende Null: Ziffern immer zweistellig ausgeben (z. B. 03 statt 3 in ex06).
+
+    „Trailing comma“: Verbotenes Trennzeichen am Listenende (in ex05/06/08 vermeiden).
+
+    VLA (Variable Length Array): Array mit Laufzeitgröße (int a[n];) → verboten. Nutze feste Größe oder malloc (hier nicht nötig).
+
+    snake_case: nur Kleinbuchstaben, Ziffern, _ in Bezeichnern und Dateinamen.
+
+    42-Header: Standard-Kopfkommentar am Anfang jeder Datei, mit Login/Mail/Datum.
+
+    Norminette / Norm: Style-/Struktur-Regeln (Tabs, Zeilenbreite, Deklarationen, Verbotenes).
