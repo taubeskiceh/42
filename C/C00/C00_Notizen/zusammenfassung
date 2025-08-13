@@ -1,143 +1,56 @@
-C00 ex00–ex08 — Zusammenfassung
-Gemeinsame Regeln (für alle Übungen)
+Grundsyntax und Variablen
 
-    Erlaubt: nur write aus <unistd.h>.
+    Einführung in die Programmiersprache C
 
-    Verboten: for, do…while, switch/case, goto, Ternary ?:, VLA (Variable Length Arrays).
+    Aufbau eines C-Programms verstehen
 
-    Norm: echte Tabs (Breite 4), ≤ 80 Spalten, ≤ 25 Funktionszeilen (ohne Klammern), Variablen-Deklarationen am Blockanfang, snake_case, 42-Header in jeder Datei, keine „trailing commas“.
+    Deklarieren und Verwenden von Variablen
 
-ex00 — ft_putchar
+    Arbeiten mit verschiedenen Datentypen (z. B. Ganzzahlen, Zeichen usw.)
 
-    Ziel: Ein Zeichen ausgeben.
+    Grundlegende arithmetische Operationen und Ausdrücke
 
-    Prototyp: void ft_putchar(char c);
+------------------------------------------------------------------------------------------------
 
-    Kernidee: write(1, &c, 1).
+Kontrollfluss und Schleifen
 
-    Begriffe: char, write, stdout (FD 1).
+    Bedingte Anweisungen (if-else) für Entscheidungsfindung
 
-ex01 — ft_print_alphabet
+    Schleifenstrukturen (while-Schleifen) für wiederholte Aufgaben
 
-    Ziel: a–z in einer Zeile.
+    Verschachtelte Schleifen und mehrstufige Kontrollstrukturen
 
-    Prototyp: void ft_print_alphabet(void);
+------------------------------------------------------------------------------------------------
 
-    Kernidee: while-Schleife von 'a' bis 'z' oder ein einziger write() mit dem String.
+Funktionen und Modulares Programmieren
 
-    Fallstrick: Kein zusätzlicher Zeilenumbruch, wenn nicht gefordert.
+    Einführung in Funktionen und deren Zweck
 
-ex02 — ft_print_reverse_alphabet
+    Funktionsdeklaration, -definition und -aufruf
 
-    Ziel: z–a in einer Zeile.
+    Übergabe von Argumenten an Funktionen
 
-    Prototyp: void ft_print_reverse_alphabet(void);
+    Rückgabe von Werten aus Funktionen
 
-    Kernidee: while rückwärts von 'z' bis 'a'.
+    Verwendung von Bibliotheken und vordefinierten Funktionen
 
-ex03 — ft_print_numbers
+    Konzepte des modularen Programmierens und Code-Organisation
 
-    Ziel: 0–9 in einer Zeile.
+------------------------------------------------------------------------------------------------
 
-    Prototyp: void ft_print_numbers(void);
 
-    Kernidee: Entweder Schleife über '0'..'9' oder write("0123456789", 10).
+Module / Übungen in C 00
 
-ex04 — ft_is_negative
+    ft_putchar – Zeichen ausgeben
 
-    Ziel: Bei n < 0 → N, sonst P.
+    ft_print_alphabet – Alphabet vorwärts ausgeben
 
-    Prototyp: void ft_is_negative(int n);
+    ft_print_reverse_alphabet – Alphabet rückwärts ausgeben
 
-    Kernidee: einfacher if/else mit write().
+    ft_print_numbers – Ziffern 0–9 ausgeben
 
-ex05 — ft_print_comb
+    ft_is_negative – prüfen, ob eine Zahl negativ ist
 
-    Ziel: Alle aufsteigenden 3er-Kombinationen verschiedener Ziffern:
-    012, 013, ..., 789 (mit ", " getrennt, ohne Trennzeichen am Ende).
+    ft_print_comb – alle Kombinationen von drei Ziffern ausgeben
 
-    Prototyp: void ft_print_comb(void);
-
-    Kernidee: Drei verschachtelte while-Schleifen:
-    a='0'..'7', b=a+1..'8', c=b+1..'9'.
-
-    Fallstrick: Kein „trailing comma“ nach 789.
-
-ex06 — ft_print_comb2
-
-    Ziel: Alle Paare zweistelliger Zahlen mit erster < zweiter:
-    00 01, 00 02, ..., 98 99.
-
-    Prototyp: void ft_print_comb2(void);
-
-    Kernidee: a=0..98, b=a+1..99, Ziffern mit (x/10)+'0' und (x%10)+'0'.
-    Optional Puffer char buf[5] = {A1, A2, ' ', B1, B2} → einmaliges write().
-
-    Fallstrick: Kein „trailing comma“ nach 98 99; führende Null immer ausgeben.
-
-ex07 — ft_putnbr
-
-    Ziel: Einen int korrekt ausgeben (inkl. -2147483648).
-
-    Prototyp: void ft_putnbr(int nb);
-
-    Kernidee:
-
-        Sonderfall -2147483648 direkt schreiben.
-
-        Negativzahl: '-' ausgeben, Zahl positiv machen.
-
-        Rekursiv höhere Stellen (nb/10), dann letzte Stelle ((nb%10)+'0').
-
-    Fallstrick: INT_MIN kann man nicht einfach negieren.
-
-ex08 — ft_print_combn
-
-    Ziel: Alle einzigartigen, streng aufsteigenden n-Kombinationen von Ziffern (0 < n < 10), getrennt durch ", ", ohne Trennzeichen am Ende.
-
-    Prototyp: void ft_print_combn(int n);
-
-    Kernidee (iterativ, ohne Rekursion):
-
-        Array d[10] (fixe Größe, keine VLA) hält aktuelle Kombination.
-
-        Start: d[i] = i → kleinste Kombination.
-
-        Ausgabe: Ziffern mit +'0'.
-
-        Letzte Kombination, wenn d[0] == 10 - n (z. B. bei n=3 → 789).
-
-        Inkrement: Von rechts erste steigerbare Stelle finden (d[i] < 9 - (n-1-i)), erhöhen, danach alles streng aufsteigend nachziehen (d[j] = d[j-1] + 1).
-
-    Fallstrick: Kein „trailing comma“, keine VLAs.
-
-Wichtige Begriffe (Mini-Glossar)
-
-    write(int fd, const void *buf, size_t n): Systemaufruf zum Schreiben von Bytes.
-    fd=1 ist stdout (Terminalausgabe).
-
-    stdout / stderr / stdin: Standard-Ausgabe (1) / Fehler (2) / Eingabe (0) als File Descriptors.
-
-    ASCII: Zeichencodierung; '0' hat Code 48. Zahl → Zeichen: digit + '0'.
-
-    char vs. int: char ist ein Byte (Zeichen), int ist ganzzahlig (32-bit in den Projekten).
-
-    Prototyp / Funktionssignatur: Vorab-Deklaration einer Funktion mit Namen, Rückgabetyp und benannten Parametern.
-
-    Rekursion: Funktion ruft sich selbst auf (ex07, Zahl in Stellen zerlegen).
-
-    Iteration: Schleifenbasierter Ansatz (ex01–06, ex08).
-
-    Puffer (Buffer): Kleines char-Array, um mehrere Ausgabebytes in einem write() zu schreiben (ex06 optional).
-
-    Führende Null: Ziffern immer zweistellig ausgeben (z. B. 03 statt 3 in ex06).
-
-    „Trailing comma“: Verbotenes Trennzeichen am Listenende (in ex05/06/08 vermeiden).
-
-    VLA (Variable Length Array): Array mit Laufzeitgröße (int a[n];) → verboten. Nutze feste Größe oder malloc (hier nicht nötig).
-
-    snake_case: nur Kleinbuchstaben, Ziffern, _ in Bezeichnern und Dateinamen.
-
-    42-Header: Standard-Kopfkommentar am Anfang jeder Datei, mit Login/Mail/Datum.
-
-    Norminette / Norm: Style-/Struktur-Regeln (Tabs, Zeilenbreite, Deklarationen, Verbotenes).
+    ft_print_comb2 – alle Kombinationen von zwei zweistelligen Zahlen ausgeben
