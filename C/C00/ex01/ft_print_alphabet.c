@@ -12,8 +12,15 @@
 
 #include <unistd.h>
 
-void ft_print_alphabet(void)
+void	ft_print_alphabet(void)
 {
-    write(1, "abcdefghijklmnopqrstuvwxyz" , 26);
-}
+	char	alphabet;
 
+	alphabet = 'a';
+
+	while (alphabet <= 'z')
+	{
+		write(1, &alphabet, 1);
+		alphabet++;
+	}
+}
