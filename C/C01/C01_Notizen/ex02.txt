@@ -1,0 +1,76 @@
+Ziel der Übung
+
+    Schreibe eine Funktion, die zwei int-Werte vertauscht, indem sie die Adressen (Pointer) auf diese Werte erhält.
+
+    Prototyp: void ft_swap(int *a, int *b);
+
+    Erlaubte Funktionen: keine (also kein write, printf, … in dieser Datei).
+
+Kernidee (Pointer & Dereferenzierung)
+
+In C werden Funktionsargumente by value (per Kopie) übergeben.
+Um den Originalwert von a und b außerhalb der Funktion zu ändern, müssen wir Adressen der Variablen übergeben:
+
+    a zeigt auf den ersten int
+
+    b zeigt auf den zweiten int
+
+    *a bedeutet: Inhalt an der Adresse a (also der echte Wert der ersten Variable)
+
+    *b bedeutet: Inhalt an der Adresse b
+
+Wir vertauschen also die Inhalte, auf die die Pointer zeigen.
+Algorithmus (klassischer Dreischritt)
+
+    Zwischenspeicher: tmp = *a;
+    (alten Wert der ersten Zahl sichern)
+
+    Überschreiben: *a = *b;
+    (erste Zahl bekommt den Wert der zweiten)
+
+    Zurückschreiben: *b = tmp;
+    (zweite Zahl bekommt den gesicherten alten Wert der ersten)
+
+Warum ein tmp?
+
+    Ohne temporäre Variable würden wir beim zweiten Schritt den ursprünglichen Wert verlieren.
+
+    Hinweis: „Swap ohne temp“ per +/- oder XOR ist nicht empfehlenswert:
+
+        +/- kann Überläufe verursachen
+
+        XOR-Swap ist unnötig kryptisch (Norm: lesbar, einfach)
+        
+        Warum normkonform?
+
+    Keine Includes: Es wird nichts aus Bibliotheken gebraucht.
+
+    snake_case in Funktionsnamen und Variablen.
+
+    Deklarationen am Blockanfang: int tmp; steht direkt oben.
+
+    Eine Anweisung pro Zeile, klare Einrückung (Tabs).
+
+    ≤ 25 Funktionszeilen (ohne die eigenen {}).
+
+    Keine verbotenen Konstrukte (kein for, keine Ternary, etc.).
+
+Was passiert im Speicher? (Mini-Skizze)
+
+Vor dem Aufruf:
+
+int x = 21;      int y = 84;
+   ^                ^
+  &x               &y
+
+Aufruf: ft_swap(&x, &y);
+In der Funktion:
+
+a -> &x  (*a == 21)
+b -> &y  (*b == 84)
+
+tmp = *a;   // tmp = 21
+*a  = *b;   // x   = 84
+*b  = tmp;  // y   = 21
+
+Nach der Rückkehr sind x == 84 und y == 21.

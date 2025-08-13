@@ -1,0 +1,65 @@
+Worum geht’s?
+
+Du sollst eine Funktion schreiben, die neunfach verschachtelte Zeiger auf einen int bis zur eigentlichen Zahl „durchdereferenziert“ und dieser Zahl den Wert 42 zuweist.
+
+    Prototyp: void ft_ultimate_ft(int *********nbr);
+
+    Erwartung: Nach dem Funktionsaufruf soll die ursprüngliche int-Variable (ganz am Ende der Kette) 42 enthalten.
+
+    Erlaubte Funktionen: keine (also kein write, printf, … in dieser Datei).
+
+    Norm: snake_case, ≤25 Zeilen, keine Kommentare im Funktionskörper, Tabs, etc.
+
+Was bedeutet „neunfacher Zeiger“?
+
+int *********nbr heißt:
+
+    nbr ist ein Pointer auf Pointer auf … (9×) … auf int.
+
+    Wenn du neunmal dereferenzierst, landest du bei dem eigentlichen int:
+
+        *********nbr ist ein lvalue vom Typ int.
+
+Bildliche Vorstellung (ASCII)
+
+Stell dir Kisten vor, die aufeinander zeigen (Pfeile = „zeigt auf“):
+
+x (int) ← p1 (int*) ← p2 (int**) ← p3 ← p4 ← p5 ← p6 ← p7 ← p8 ← p9 (int*********)
+
+    In main baust du so eine Kette (p1 zeigt auf x, p2 zeigt auf p1, … p9 zeigt auf p8).
+
+    An die Funktion übergibst du p9.
+
+    In der Funktion weist du zu: *********nbr = 42;
+
+Warum keine #include?
+
+    Du rufst keine Bibliotheksfunktion auf; du brauchst keine Typdefinitionen außer den eingebauten.
+
+    Die Abgabedatei enthält nur die Funktion.
+
+Was passiert genau im Inneren?
+
+    * (Stern) bedeutet Dereferenzierung – also „folg der Adresse und hol den Inhalt“.
+
+    Neun Sterne in Folge heißen: „Geh neun Ebenen tief, bis du beim eigentlichen int bist.“
+
+    Dann schreibst du: *********nbr = 42;
+
+Typische Fehler (und wie du sie vermeidest)
+
+    ❌ Zu wenige oder zu viele Sterne: Der Typ im Prototyp und die Dereferenzierung müssen zusammenpassen (beides 9).
+
+    ❌ Rückgabewert verwenden: Die Funktion ist void; sie ändert den Wert über den Zeiger, sie gibt nichts zurück.
+
+    ❌ Includes/IO in der Abgabedatei: Nicht erlaubt/unnötig.
+
+    ❌ NULL-Zeiger prüfen: Im Subject wird üblicherweise eine valide Kette vorausgesetzt; zusätzliche Checks sind nicht gefordert (und würden Zeilen kosten).
+
+Unterschied zu ex00 (ft_ft)
+
+    ex00: ein einziger Zeiger (int *nbr) → *nbr = 42;
+
+    ex01: neun Zeiger (int *********nbr) → *********nbr = 42;
+
+    Die Idee ist identisch, nur die Indirektions-Tiefe ist höher.

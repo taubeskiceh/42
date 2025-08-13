@@ -1,0 +1,220 @@
+ex00 — ft_ft.c
+
+void	ft_ft(int *nbr)
+{
+	*nbr = 42;
+}
+
+    int *nbr; — Pointer-Parameter: nbr speichert eine Adresse zu int.
+
+    *nbr = 42; — Dereferenzierung: schreibe in die Variable, auf die nbr zeigt, den Wert 42.
+
+ex01 — ft_ultimate_ft.c
+
+void	ft_ultimate_ft(int *********nbr)
+{
+	*********nbr = 42;
+}
+
+    int *********nbr; — 9-fach Pointer: Adresse → Adresse → … → int.
+
+    *********nbr = 42; — 9-fach dereferenzieren: am Ende der Kette liegt ein int, der auf 42 gesetzt wird.
+
+ex02 — ft_swap.c
+
+void	ft_swap(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+    int *a, *b; — Pointer-Parameter: zeigen auf zwei int.
+
+    int tmp; — Temporäre Variable: Zwischenspeicher.
+
+    tmp = *a; — Wert sichern: Inhalt von *a in tmp.
+
+    *a = *b; — Überschreiben: a bekommt den Wert von b.
+
+    *b = tmp; — Zurückschreiben: b bekommt den gesicherten alten a-Wert.
+
+ex03 — ft_div_mod.c
+
+void	ft_div_mod(int a, int b, int *div, int *mod)
+{
+	*div = a / b;
+	*mod = a % b;
+}
+
+    int a, int b; — Wert-Parameter: Eingaben (Dividend/Divisor).
+
+    int *div, *mod; — Output per Pointer: Adressen für Ergebnisse.
+
+    *div = a / b; — Ganzzahl-Division: Quotient in *div (Richtung 0 abgeschnitten).
+
+    *mod = a % b; — Modulo: Rest in *mod (Rest hat Vorzeichen von a).
+
+ex04 — ft_ultimate_div_mod.c
+
+void	ft_ultimate_div_mod(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *a / *b;
+	*b = tmp % *b;
+}
+
+    int *a, *b; — In-Place-Update: Ergebnis zurück in die Original-Variablen.
+
+    int tmp; — Alter a-Wert speichern, bevor überschrieben wird.
+
+    tmp = *a; — Sichern des ursprünglichen Dividenden.
+
+    *a = *a / *b; — Quotient in *a.
+
+    *b = tmp % *b; — Rest aus altem a in *b.
+
+ex05 — ft_putstr.c
+
+#include <unistd.h>
+
+void	ft_putstr(char *str)
+{
+	while (*str)
+	{
+		write(1, str, 1);
+		str++;
+	}
+}
+
+    #include <unistd.h> — Header für write(int fd, const void *buf, size_t n).
+
+    char *str; — C-String: Zeiger auf erstes Zeichen (endet bei '\0').
+
+    while (*str) — Bis Nullterminator: Schleife läuft, solange aktuelles Zeichen ≠ '\0'.
+
+    write(1, str, 1); — Syscall: gib 1 Byte (aktuelles Zeichen) auf stdout (fd=1) aus.
+
+    str++; — Pointer-Inkrement: zum nächsten Zeichen.
+
+ex06 — ft_strlen.c
+
+int	ft_strlen(char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
+}
+
+    char *str; — C-String-Eingabe.
+
+    int len; — Zähler für Zeichen.
+
+    len = 0; — Initialisierung.
+
+    while (str[len] != '\0') — Laufe bis Terminator.
+
+    len++; — Zählen jedes Zeichens.
+
+    return (len); — Länge ohne '\0'.
+
+ex07 — ft_rev_int_tab.c
+
+void	ft_rev_int_tab(int *tab, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	j = size - 1;
+	while (i < j)
+	{
+		tmp = tab[i];
+		tab[i] = tab[j];
+		tab[j] = tmp;
+		i++;
+		j--;
+	}
+}
+
+    int *tab, int size; — Array (als Zeiger) & Länge.
+
+    int i, j; — Zwei-Zeiger-Technik: links (i), rechts (j).
+
+    i = 0; j = size - 1; — Start außen.
+
+    while (i < j) — Tauschen bis Mitte.
+
+    tmp = tab[i]; tab[i] = tab[j]; tab[j] = tmp; — Swap der Elemente.
+
+    i++; j--; — Annähern zur Mitte.
+
+ex08 — ft_sort_int_tab.c
+
+void	ft_sort_int_tab(int *tab, int size)
+{
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (tab[i] > tab[j])
+			{
+				tmp = tab[i];
+				tab[i] = tab[j];
+				tab[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+    int *tab, int size; — Array & Länge.
+
+    int i, j; — Doppelte Schleife für O(n²)-Sort (Selection/Bubble-artig).
+
+    i = 0; while (i < size - 1) — Äußere Position bis vor letztes Element.
+
+    j = i + 1; while (j < size) — Vergleiche mit allen rechts von i.
+
+    if (tab[i] > tab[j]) — Aufsteigend sortieren: größer? → tauschen.
+
+    tmp = tab[i]; tab[i] = tab[j]; tab[j] = tmp; — Swap zweier Werte.
+
+Mini-Glossar (die „Formeln“ auf einen Blick)
+
+    Pointer-Deklaration: int *p; — p speichert Adresse auf int.
+
+    Dereferenzierung: *p — greift den Inhalt an Adresse p zu.
+
+    Swap: tmp=a; a=b; b=tmp; — (mit * bei Pointer-Inhalten).
+
+    Division/Modulo: q = a / b; r = a % b; — Quotient/Rest (ganzzahlig).
+
+    String-Ende: '\0' — Nullterminator markiert Ende eines C-Strings.
+
+    Durch String laufen (Pointer): while (*s) { ...; s++; }
+
+    Durch String laufen (Index): i=0; while (s[i]) { ...; i++; }
+
+    Array umdrehen: i=0; j=n-1; while(i<j) swap(tab[i], tab[j]);
+
+    Einfach sortieren: i< n-1; j=i+1..n-1; if(tab[i]>tab[j]) swap();
+
+    Schreiben: write(1, ptr, n); — fd=1 ist stdout, gibt n Bytes aus ptr.
