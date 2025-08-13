@@ -14,5 +14,12 @@
 
 void	ft_print_numbers(void)
 {
-	write(1, "0123456789", 10);
+	char	number;
+
+	number = '0';
+	while (number <= '9')
+	{
+		write(1, &number, 1);
+		number++;
+	}
 }
