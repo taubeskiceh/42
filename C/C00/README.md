@@ -1,7 +1,7 @@
 # ex00 - ft_putchar
-# ex01 - 
-# ex02 - 
-# ex03 - 
+# ex01 - ft_print_alphabet
+# ex02 - ft_print_reverse_alphabet
+# ex03 - ft_print_numbers.c
 # ex04 - 
 # ex05 - 
 # ex06 -
@@ -29,3 +29,22 @@ https://man7.org/linux/man-pages/man2/write.2.html
 
 -----------------------------------------------------------------------------------------------------
 # ft_print_alphabet 
+
+
+
+
+
+
+
+
+
+
+
+
+# ft_print_reverse_alphabet
+
+
+
+# ft_print_numbers.c
+
+
