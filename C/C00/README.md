@@ -8,7 +8,7 @@
 # ex07 - 
 # ex08 - 
 -----------------------------------------------------------------------------------------------------
-# ft_putchar (https://man7.org/linux/man-pages/man2/write.2.html)
+# ft_putchar 
 Ein minimalistisches c-Programm, das Anfänger rätselhaft macht, in eine Datei mit dem Namen a.c schreiben und a.out mit gcc a.c && ./a.out
 
 #include <unistd.h>
@@ -24,6 +24,8 @@ int	main(void) {
 	// ft_putchar("4");			                    // will not work, you are using " instead of ', so C language think it is a char array.
 	return 0;
 }
+
+https://man7.org/linux/man-pages/man2/write.2.html
 
 -----------------------------------------------------------------------------------------------------
 # ft_print_alphabet 
