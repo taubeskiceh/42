@@ -1,175 +1,56 @@
-## Grundsyntax und Variablen
+Grundsyntax und Variablen
 
-Einführung in die Programmiersprache C
+    Einführung in die Programmiersprache C
 
-Aufbau eines C-Programms verstehen
+    Aufbau eines C-Programms verstehen
 
-Deklarieren und Verwenden von Variablen
+    Deklarieren und Verwenden von Variablen
 
-Arbeiten mit verschiedenen Datentypen (z. B. Ganzzahlen, Zeichen usw.)
+    Arbeiten mit verschiedenen Datentypen (z. B. Ganzzahlen, Zeichen usw.)
 
-Grundlegende arithmetische Operationen und Ausdrücke
+    Grundlegende arithmetische Operationen und Ausdrücke
 
+------------------------------------------------------------------------------------------------
 
-## Kontrollfluss und Schleifen
+Kontrollfluss und Schleifen
 
-Bedingte Anweisungen (if-else) für Entscheidungsfindung
+    Bedingte Anweisungen (if-else) für Entscheidungsfindung
 
-Schleifenstrukturen (while-Schleifen) für wiederholte Aufgaben
+    Schleifenstrukturen (while-Schleifen) für wiederholte Aufgaben
 
-Verschachtelte Schleifen und mehrstufige Kontrollstrukturen
+    Verschachtelte Schleifen und mehrstufige Kontrollstrukturen
+
+------------------------------------------------------------------------------------------------
 
 Funktionen und Modulares Programmieren
 
-Einführung in Funktionen und deren Zweck
+    Einführung in Funktionen und deren Zweck
 
-Funktionsdeklaration, -definition und -aufruf
+    Funktionsdeklaration, -definition und -aufruf
 
-Übergabe von Argumenten an Funktionen
+    Übergabe von Argumenten an Funktionen
 
-Rückgabe von Werten aus Funktionen
+    Rückgabe von Werten aus Funktionen
 
-Verwendung von Bibliotheken und vordefinierten Funktionen
+    Verwendung von Bibliotheken und vordefinierten Funktionen
 
-Konzepte des modularen Programmierens und Code-Organisation
+    Konzepte des modularen Programmierens und Code-Organisation
 
+------------------------------------------------------------------------------------------------
 
 
+Module / Übungen in C 00
 
+    ft_putchar – Zeichen ausgeben
 
-# ex00 - ft_putchar
-# ex01 - ft_print_alphabet
-# ex02 - ft_print_reverse_alphabet
-# ex03 - ft_print_numbers
-# ex04 - ft_is_negative
-# ex05 - ft_print_comb
-# ex06 - ft_print_comb2
-# ex07 - ft_putnbr
-# ex08 - ft_print_combn
------------------------------------------------------------------------------------------------------
-# ft_putchar 
-Ein minimalistisches c-Programm, das Anfänger rätselhaft macht, in eine Datei mit dem Namen a.c schreiben und a.out mit gcc a.c && ./a.out
+    ft_print_alphabet – Alphabet vorwärts ausgeben
 
-#include <unistd.h>
+    ft_print_reverse_alphabet – Alphabet rückwärts ausgeben
 
-void	ft_putchar(char c)                  // void because the function does not return any value, it writes directly, char is the type of the variable c that is given as parameter to the function ft_putchar by the main function.
-{
-	write(1, &c, 1);			                 // ssize_t write(int fd, const void *buf, size_t count); or in human language: write count letters of buf (which is a pointer) to fd (if fd = 1 this is your terminal, stdout)
-}
+    ft_print_numbers – Ziffern 0–9 ausgeben
 
-int	main(void) {
-	ft_putchar(42);				                        // will print a star
-	// ft_putchar(42 + '0');	                   // will only print 4
-	// ft_putchar("4");			                    // will not work, you are using " instead of ', so C language think it is a char array.
-	return 0;
-}
+    ft_is_negative – prüfen, ob eine Zahl negativ ist
 
-https://man7.org/linux/man-pages/man2/write.2.html
+    ft_print_comb – alle Kombinationen von drei Ziffern ausgeben
 
------------------------------------------------------------------------------------------------------
-# ft_print_alphabet 
-
-
-
-
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-# ft_print_reverse_alphabet
-
-
-
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-# ft_print_numbers
-
-
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-# ft_is_negative
-
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-# ft_print_comb
-
-
-
-
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-# ft_print_comb2
-
-
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-# ft_putnbr
-
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
-# ft_print_combn
-
-
-
-
-
-
------------------------------------------------------------------------------------------------------
+    ft_print_comb2 – alle Kombinationen von zwei zweistelligen Zahlen ausgeben
