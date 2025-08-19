@@ -1,3 +1,18 @@
+## Grundsyntax und Variablen
+
+Einführung in die Programmiersprache C
+
+Aufbau eines C-Programms verstehen
+
+Deklarieren und Verwenden von Variablen
+
+Arbeiten mit verschiedenen Datentypen (z. B. Ganzzahlen, Zeichen usw.)
+
+Grundlegende arithmetische Operationen und Ausdrücke
+
+
+
+
 # ex00 - ft_putchar
 # ex01 - ft_print_alphabet
 # ex02 - ft_print_reverse_alphabet
