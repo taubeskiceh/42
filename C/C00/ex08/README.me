@@ -1,0 +1,35 @@
+void ft_print_combn(int n);
+
+Rules & Logic
+
+    n is between 1 and 9.
+
+    Digits inside each combination must be strictly increasing.
+
+        Example: for n = 2, you print 01 02 03 ... 89.
+
+        No 00, no 21 (because not increasing).
+
+    Combinations are separated by ", ".
+
+    No extra comma at the end.
+
+Examples
+
+    ft_print_combn(1) → 0, 1, 2, ..., 9
+
+    ft_print_combn(2) → 01, 02, 03, ..., 89
+
+    ft_print_combn(3) → 012, 013, ..., 789
+
+Implementation idea
+
+    Use recursion or nested loops to generate all sequences.
+
+    Start with the smallest digit, then go deeper.
+
+    Always ensure the next digit is larger than the previous one.
+
+    When n digits are chosen → print them.
+
+    At the very end → no comma.
