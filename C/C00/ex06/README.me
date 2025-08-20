@@ -1,0 +1,53 @@
+c00 ex06
+
+
+
+a and b are the two numbers that go from 00 to 99.
+
+buf[5] is a char array that stores the text before printing:
+
+Index 0  tens digit of a
+
+Index 1  ones digit of a
+
+Index 2 space ' '
+
+Index 3  tens digit of b
+
+Index 4 ones digit of b
+
+
+
+a runs from 0 to 98. Why not to 99? Because a must always be smaller than b, and the last valid pair is 98 99.
+
+b always starts at a + 1, so there are no duplicates like 00 00 or 05 05
+
+
+
+buf[0] = (char)('0' + (a / 10));
+			buf[1] = (char)('0' + (a % 10));
+			buf[2] = ' ';
+			buf[3] = (char)('0' + (b / 10));
+			buf[4] = (char)('0' + (b % 10));
+
+
+ Here the digits are calculated and written into the buffer array:
+
+    (a / 10)  tens digit of a
+
+    (a % 10)  ones digit of a
+
+    (b / 10)  tens digit of b
+
+    (b % 10)  ones digit of b
+
+Then each is + '0', to turn the number (e.g., 5) into the correct ASCII character ('5').
+
+example:
+
+ If a = 7, b = 23:
+
+buf = {'0', '7', ' ', '2', '3'}
+
+Output = "07 23"
+
