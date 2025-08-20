@@ -1,0 +1,40 @@
+Prototype: void ft_putnbr(int n);
+
+What to do:
+
+If n is negative, first write '-'.
+
+Print the absolute value of n digit by digit in decimal.
+
+Use recursion (or a stack) to print higher digits before lower ones.
+
+Key constraints (Piscine rules):
+
+Use write(1, &c, 1) only (no printf, no itoa).
+
+Handle edge cases:
+
+n == 0 → print '0'.
+
+n == -2147483648 (INT_MIN) → can’t do -n in int.
+Solutions: cast to long at start (long nb = n;) or special-case INT_MIN.
+
+Typical implementation idea:
+
+Cast to long nb = n;
+
+If nb < 0, write '-', then nb = -nb.
+
+If nb >= 10, call ft_putnbr(nb / 10).
+
+Compute last digit d = nb % 10, convert to char '0' + d, and write.
+
+Examples:
+
+ft_putnbr(0) → 0
+
+ft_putnbr(42) → 42
+
+ft_putnbr(-7) → -7
+
+ft_putnbr(-2147483648) → -2147483648
