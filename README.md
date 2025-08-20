@@ -14,4 +14,7 @@
 
 # vim cheatsheet
 
-- https://www.cs.cmu.edu/~15131/f17/topics/vim/vim- cheatsheet.pdfphoenixnap.com...
+- https://www.cs.cmu.edu...
+
+- https://phoenixnap.com/kb/wp-content/uploads/2021/11/vim-commands-cheat-sheet-by-pnap.pdf
+
